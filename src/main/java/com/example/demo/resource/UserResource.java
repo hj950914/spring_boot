@@ -36,6 +36,7 @@ public class UserResource {
      * consumes属性指定处理请求的提交内容类型（Content-Type）
      * produces指定返回给前端内容类型
      */
+
     @PostMapping(value = "/users", consumes = APPLICATION_JSON_UTF8_VALUE)
     public void createUser(@RequestBody @Valid User user) {
         userService.he();
@@ -46,6 +47,7 @@ public class UserResource {
     /**
      * 查找所有用户,将数据以json格式返回前端 (使用GET)
      */
+
     @GetMapping(value = "/users")
     public List<User> findUsers() {
         //从缓存查找用户
@@ -56,6 +58,7 @@ public class UserResource {
      * 查找单个用户,将数据以json格式返回前端 (使用GET)
      * 注解@PathVariable表示请求链接中参数自动赋值
      */
+
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable Long id) {
         return userCache.getIfPresent(id);
@@ -64,6 +67,7 @@ public class UserResource {
     /**
      * 更新用户(使用PUT)
      */
+
     @PutMapping("users/{id}")
     public void updateUser(@PathVariable Long id, @RequestBody @Valid User user) {
         //判断缓存中是否存在即将更新的用户
@@ -75,6 +79,7 @@ public class UserResource {
     /**
      * 删除用户(使用DELETE)
      */
+
     @DeleteMapping("users/{id}")
     public void deleteUser(@PathVariable Long id) {
         userCache.invalidate(id);
